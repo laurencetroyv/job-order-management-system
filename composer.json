@@ -43,7 +43,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Modules\\": "modules/"
         }
     },
     "autoload-dev": {
@@ -86,6 +87,12 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "format": [
+            "vendor/bin/pint --parallel"
+        ],
+        "lint": [
+            "vendor/bin/phpstan analyse --memory-limit=-1"
         ]
     },
     "extra": {
