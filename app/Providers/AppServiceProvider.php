@@ -3,9 +3,9 @@
 namespace App\Providers;
 
 use Laravel\Sanctum\Sanctum;
-use App\Models\PersonalAccessToken;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Modules\Core\Models\PersonalAccessToken;
 use Modules\Authentication\Models\Authentication;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,5 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
+
+        Gate::define('viewScalar', static function (Authentication $user) {
+            return $user->email === 'admin@mrxuh.jo';
+        });
     }
 }
