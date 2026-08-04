@@ -83,7 +83,7 @@ class SkeletonServiceProvider extends ServiceProvider
         $apiPath = $this->dir."/../Routes/$this->tag-api.php";
 
         if (file_exists($webPath)) {
-            $this->loadRoutesFrom($webPath);
+            Route::middleware('web')->group($webPath);
         }
 
         if (file_exists($apiPath)) {
