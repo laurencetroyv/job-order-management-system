@@ -42,8 +42,8 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // Set scalar route gate
-        Gate::define('viewScalar', static function (Authentication $user) {
-            return $user->email === 'admin@mrxuh.jo';
-        });
+        //        Gate::define('viewScalar', static function (Authentication $user) {
+        //            return $user->email === 'admin@mrxuh.jo';
+        //        });
     }
 }

@@ -61,10 +61,13 @@ readonly class AuthenticationService
     {
         $auth = Authentication::create(['email' => $data->email, 'password' => \Hash::make($data->password)]);
 
+        $auth->assignRole(RoleEnum::SuperAdmin);
+
         $userData = [
             'first_name'  => $data->firstName,
             'middle_name' => $data->middleName ?? null,
             'last_name'   => $data->lastName,
+            'photo'       => $data->photo,
         ];
 
         AuthenticationCreated::dispatch($auth, $userData, RoleEnum::SuperAdmin);

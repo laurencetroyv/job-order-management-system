@@ -1,11 +1,11 @@
 <?php
 
-use Database\Seeders\RoleSeeder;
 use Livewire\Livewire;
+use Database\Seeders\RoleAndPermissionSeeder;
 use Modules\Authentication\Models\Authentication;
 
 it('test-form', function () {
-    $this->seed(RoleSeeder::class);
+    $this->seed(RoleAndPermissionSeeder::class);
 
     $email = 'admin@mrxuh.jo';
     $password = 'Secret123!';

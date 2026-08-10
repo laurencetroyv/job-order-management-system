@@ -33,8 +33,12 @@ trait HasAttachments
             ->latestOfMany();
     }
 
-    public function addAttachment(UploadedFile $file, string $folder, bool $has_uploaded_by = true): Attachment
-    {
+    public function addAttachment(
+        UploadedFile $file,
+        string $folder,
+        bool $hasUploadedBy = true,
+        ?string $uploaderId = null
+    ): Attachment {
         $fileName = Str::ulid().'.'.$file->getClientOriginalExtension();
 
         $path = empty($folder)
@@ -49,7 +53,7 @@ trait HasAttachments
             'file_path'     => $filePath,
             'mime_type'     => $file->getMimeType(),
             'file_size'     => $file->getSize(),
-            'uploaded_by'   => $has_uploaded_by ? \Auth::user()->user()->id : null,
+            'uploaded_by'   => $hasUploadedBy ? \Auth::user()->user()->id ?? null : $uploaderId,
         ]);
     }
 

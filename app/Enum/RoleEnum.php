@@ -13,4 +13,13 @@ enum RoleEnum: string
     case DepartmentAdmin = 'department_admin';
 
     case LineWorker = 'line_worker';
+
+    public function label(): string
+    {
+        return match ($this) {
+            self::SuperAdmin      => 'Super Admin',
+            self::DepartmentAdmin => 'Department Admin',
+            self::LineWorker      => 'Line Worker',
+        };
+    }
 }

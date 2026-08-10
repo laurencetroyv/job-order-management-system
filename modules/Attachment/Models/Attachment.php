@@ -6,9 +6,12 @@ use Carbon\Carbon;
 use Modules\Core\Traits\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Modules\Core\Contracts\Attachmentable;
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Attributes\Appends;
+use Spatie\Activitylog\Models\Concerns\LogsActivity;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Attachment\Database\Factories\AttachmentFactory;
@@ -27,11 +30,13 @@ use Modules\Attachment\Database\Factories\AttachmentFactory;
  */
 #[Appends(['url'])]
 #[Fillable(['original_name', 'file_name', 'file_path', 'mime_type', 'file_size', 'uploaded_by'])]
-class Attachment extends Model
+class Attachment extends Model implements Attachmentable
 {
     /** @use HasFactory<AttachmentFactory> */
     use HasFactory;
 
+    use HasUlids;
+    use LogsActivity;
     use SoftDeletes;
 
     protected function casts(): array

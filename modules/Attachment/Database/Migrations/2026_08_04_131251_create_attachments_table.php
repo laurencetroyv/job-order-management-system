@@ -9,7 +9,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attachments', function (Blueprint $table) {
-            $table->ulid('id')->primary()->unique();
+            $table->ulid('id')->primary();
 
             $table->ulidMorphs('attachmentable');
 

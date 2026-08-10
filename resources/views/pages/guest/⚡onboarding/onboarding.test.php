@@ -2,13 +2,13 @@
 
 use Livewire\Livewire;
 use Modules\Users\Models\User;
-use Database\Seeders\RoleSeeder;
+use Database\Seeders\RoleAndPermissionSeeder;
 use Modules\Authentication\Models\Authentication;
 
 use function Pest\Laravel\assertDatabaseMissing;
 
 it('onboarding-page', function () {
-    $this->seed(RoleSeeder::class);
+    $this->seed(RoleAndPermissionSeeder::class);
 
     $password = 'Secret123!';
     $hash = Hash::make($password);
